@@ -52,7 +52,7 @@ function BagScreen() {
 function ShopScreen() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>ShopScreen!</Text>
+      <Text>ShopScreenss!</Text>
     </View>
   );
 }
