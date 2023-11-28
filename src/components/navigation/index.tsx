@@ -9,15 +9,17 @@ import Home from '../../screen/home';
 import Login from '../../screen/login';
 import TabNavigation from './tabNavigation';
 import DrawerNavigation from './drawerNavigation';
+import Demo from '../../screen/demo';
 
 type RootStackParamList = {
-  Home: undefined;
-  Profile: {userId: string};
-  Feed: {sort: 'latest' | 'top'} | undefined;
+  TabHome: undefined;
+  Dashboard: {userId: string};
   Login: undefined;
+  Demo: {name: string; phone: number};
+  // Feed: { sort: 'latest' | 'top' } | undefined;
 };
-export type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
-const Stack = createNativeStackNavigator();
+export type Props = NativeStackScreenProps<RootStackParamList>;
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const Navigation = () => {
   return (
@@ -26,13 +28,17 @@ const Navigation = () => {
         initialRouteName="Login"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home">
-          {() => (
-            <>
-              <TabNavigation />
-              {/* <DrawerNavigation/> */}
-            </>
-          )}
+        <Stack.Screen name="Demo" component={Demo} initialParams={{ phone: 42 }}/>
+        <Stack.Screen name="TabHome">
+          {props => {
+            console.log('props', props);
+            return (
+              <>
+                <TabNavigation />
+                {/* <DrawerNavigation/> */}
+              </>
+            );
+          }}
         </Stack.Screen>
         <Stack.Screen name="Dashboard">
           {() => (

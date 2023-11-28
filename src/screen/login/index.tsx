@@ -15,7 +15,7 @@ import axios from 'axios';
 import {Dimensions} from 'react-native';
 import {Props} from '../../components/navigation';
 
-const Login = (props: any) => {
+const Login = (props: Props) => {
   const [username, setUsername] = useState('kminchelle');
   const [password, setPassword] = useState('0lelplR');
   const isDarkMode = useColorScheme() === 'dark';
@@ -30,6 +30,8 @@ const Login = (props: any) => {
   const handlePassword = (password: string) => {
     setPassword(password);
   };
+
+  console.log('props.route.name',props.route.name)
 
   const handleSubmit = () => {
     axios
@@ -72,7 +74,7 @@ const Login = (props: any) => {
               <Button
                 type="outline"
                 title={'login as guest'}
-                onPress={() => props.navigation.navigate('Home')}
+                onPress={() => props.navigation.navigate('TabHome')}
               />
             </View>
           </View>
